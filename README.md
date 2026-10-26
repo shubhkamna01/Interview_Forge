@@ -1,34 +1,7 @@
 # Interview Forge
 
-A frontend web application to help you prepare for interviews, built with **React 19**, **TypeScript** and **Vite**.
+A frontend web application to help you organise interviews, built with **React 19**, **TypeScript** and **Vite**.
 
-> Items marked `TODO` are placeholders. Fill them in with details specific to your project.
-
----
-
-## Table of Contents
-
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Project Structure](#project-structure)
-- [Prerequisites](#prerequisites)
-- [Getting Started](#getting-started)
-- [Available Scripts](#available-scripts)
-- [Configuration](#configuration)
-- [Troubleshooting](#troubleshooting)
-- [Contributing](#contributing)
-- [License](#license)
-
----
-
-## Features
-
-- TODO: e.g. practice interview questions by role or topic
-- TODO: e.g. mock interview sessions
-- TODO: e.g. feedback and progress tracking
-- Fast development with Vite hot module replacement (HMR)
-- Fully typed codebase with TypeScript
-- Fast linting with Oxlint
 
 ## Tech Stack
 
