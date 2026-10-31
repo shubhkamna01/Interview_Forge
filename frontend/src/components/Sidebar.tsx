@@ -1,20 +1,17 @@
-import type { IconName } from "../data/mock";
-import type { View } from "../hooks/useHashView";
+import { ROLE_LABEL } from "../auth/roles";
+import { initials, useAuth } from "../auth/useAuth";
+import type { View } from "../hooks/useRoute";
+import { navFor } from "../navigation";
 import { Icon } from "./Icon";
 
-const items: { view: View; label: string; icon: IconName }[] = [
-  { view: "dashboard", label: "Dashboard", icon: "dashboard" },
-  { view: "candidates", label: "Candidates", icon: "candidates" },
-  { view: "interviewers", label: "Interviewers", icon: "interviewers" },
-  { view: "rooms", label: "Rooms & Slots", icon: "rooms" },
-  { view: "schedule", label: "Schedule", icon: "schedule" },
-];
-
 export function Sidebar({ active }: { active: View }) {
+  const { user, logout } = useAuth();
+  if (!user) return null;
+
   return (
     <aside className="sidebar">
       <div className="brand">
-        <div className="brand-mark">I</div>
+        <div className="brand-mark">IF</div>
         <div className="brand-text">
           <h2>Interview Forge</h2>
           <span>INTERVIEW INTELLIGENCE</span>
@@ -24,7 +21,7 @@ export function Sidebar({ active }: { active: View }) {
       <div className="nav-label">WORKSPACE</div>
 
       <nav className="navigation" aria-label="Main">
-        {items.map((item) => (
+        {navFor(user.role).map((item) => (
           <a
             key={item.view}
             className={`nav-item${active === item.view ? " active" : ""}`}
@@ -47,11 +44,16 @@ export function Sidebar({ active }: { active: View }) {
           <p>Coordinate interviews without the chaos.</p>
         </div>
         <div className="profile">
-          <div className="avatar">PC</div>
-          <div className="profile-text">
-            <strong>Placement Team</strong>
-            <span>Coordinator</span>
-          </div>
+          <a className="profile-link" href="#/profile" title="Your profile">
+            <div className="avatar">{initials(user.name)}</div>
+            <div className="profile-text">
+              <strong>{user.name}</strong>
+              <span>{ROLE_LABEL[user.role]}</span>
+            </div>
+          </a>
+          <button className="logout-button" onClick={logout} aria-label="Log out" title="Log out">
+            <Icon name="logout" />
+          </button>
         </div>
       </div>
     </aside>
